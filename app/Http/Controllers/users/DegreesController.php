@@ -1,9 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\users;
 
+use App\Model\Exams;
 use App\Model\degrees;
+use App\model\Subjects;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DegreesController extends Controller
 {
@@ -12,9 +16,17 @@ class DegreesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    ####################################      index        ##############################
+    public function index($id)
     {
-        //
+        $degrees=Subjects::find($id)->degrees;
+        $degrees_id=$degrees->where('user_id',Auth::user()->id)->pluck('id')->toArray();
+
+        $exam_degrees=Exams::with('degrees')->whereHas('degrees',function($q) use($degrees_id){
+            $q->whereIn('id',$degrees_id);
+        })->get();
+
+        return view('users.degrees.index',compact('exam_degrees'));
     }
 
     /**
@@ -44,9 +56,9 @@ class DegreesController extends Controller
      * @param  \App\Model\degrees  $degrees
      * @return \Illuminate\Http\Response
      */
-    public function show(degrees $degrees)
+    public function show()
     {
-        //
+        return view('users.degrees.paypal');
     }
 
     /**

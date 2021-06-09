@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        commands\ExamExpire::class,
+        commands\ExamActive::class
     ];
 
     /**
@@ -25,6 +26,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->command('exam:expire')->everyMinute();
+        $schedule->command('exam:active')->everyMinute();
     }
 
     /**

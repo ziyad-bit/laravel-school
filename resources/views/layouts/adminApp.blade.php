@@ -4,15 +4,12 @@
     @include('admins.includes.header')
 
 <body>
-    @auth
-        @include('admins.includes.navbar')
-    @endauth
+    @include('admins.includes.navbar')
+    
     <div class="container">
         @yield('content')
     </div>
     
-
-
     @include('admins.includes.footer')
 </body>
 </html>

@@ -1,0 +1,17 @@
+.card{
+    margin-top: 20%;
+    min-width: 24rem !important;
+}
+
+.card span{
+    font-weight: bold;
+    line-height: 1.9;
+}
+
+.form-check{
+    margin-bottom: 10px;
+}
+
+.alert{
+    margin-top: 20px;
+}

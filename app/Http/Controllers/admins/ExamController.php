@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\ExamRequest;
 use App\Http\Controllers\Controller;
+use App\model\Subjects;
 use Illuminate\Support\Facades\Redirect;
 
 class ExamController extends Controller
@@ -24,8 +25,9 @@ class ExamController extends Controller
     ##################################      index        ##################################
     public function index()
     {
+        $subjects=Subjects::selection()->get();
         $levels=Levels::selection()->get();
-        return view('admins.exams.create',compact('levels'));
+        return view('admins.exams.create',compact('levels','subjects'));
     }
 
     /**
@@ -43,14 +45,15 @@ class ExamController extends Controller
     ##################################      store        ##################################
     public function store(ExamRequest $request)
     {
-        $name  = filter_var($request->name  ,FILTER_SANITIZE_STRING);
         $token=Str::random(20);
 
         $exam=Exams::create([
-            'name'                => $name,
+            'subject'             => $request->subject,
+            'date'                => $request->date,
             'level_id'            => $request->level,
             'number_of_questions' => $request->number_of_questions,
             'term'                => $request->term,
+            'duration'            => $request->duration,
             'token'               => $token,
         ]);
 
@@ -66,9 +69,20 @@ class ExamController extends Controller
     ##################################      show        ##################################
     public function show()
     {
-        return view('admins.exams.show');
+        $exams=Exams::selection()->get();
+        return view('admins.exams.show',compact('exams'));
     }
 
+    ##################################      active        #################################
+    public function active($id)
+    {
+        $exam=Exams::find($id);
+        $exam->update([
+            'active'=>1
+        ]);
+
+        return redirect()->back()->with(['success'=>'you activated it']);
+    }
     /**
      * Show the form for editing the specified resource.
      *

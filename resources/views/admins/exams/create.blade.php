@@ -12,10 +12,15 @@
             <form method="post" action="{{url('admins/exams/store')}}">
                 @csrf
                 <div class="form-group">
-                    <label for="exampleInputname1">name </label>
-                    <input type="text" class="form-control" name="name" id="exampleInputname1" aria-describedby="nameHelp">
+                    <label for="exampleInputname1">name of subject </label>
+                    <select name="subject" id="" >
+                        <option value="">....</option>
+                        @foreach ($subjects as $subject)
+                            <option value="{{$subject->name}}">{{$subject->name}}</option>
+                        @endforeach
+                    </select>
                     <small style="color:red">
-                        @error('name')
+                        @error('subject')
                             {{$message}}
                         @enderror
                     </small>
@@ -27,6 +32,28 @@
                     <input type="number" value="0" class="form-control" name="number_of_questions" id="exampleInputname1" aria-describedby="nameHelp">
                     <small style="color:red">
                         @error('number_of_questions')
+                            {{$message}}
+                        @enderror
+                    </small>
+                        
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputname1">duration in minutes </label>
+                    <input type="number" value="0" class="form-control" name="duration" id="exampleInputname1" aria-describedby="nameHelp">
+                    <small style="color:red">
+                        @error('duration')
+                            {{$message}}
+                        @enderror
+                    </small>
+                        
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputname1">date </label>
+                    <input type="datetime-local" value="0" class="form-control" name="date" id="exampleInputname1" aria-describedby="nameHelp">
+                    <small style="color:red">
+                        @error('date')
                             {{$message}}
                         @enderror
                     </small>

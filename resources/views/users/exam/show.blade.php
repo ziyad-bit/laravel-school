@@ -1,13 +1,20 @@
 @extends('layouts.app')
 
+@section('header')
+    <link rel="stylesheet" href="{{asset(url('css/users/exams/show.css'))}}">
+@endsection
+
 @section('content')
-<div class="alert alert-success text-center" id="load"></div>
+
+<div class="alert alert-success text-center" id="load" style="display: none"></div>
+<div class="alert alert-danger text-center" id="exam_finish" style="display: none"></div>
+
 <div class="parent">
-    <div class="parent2">
+    <div class="parent2 d-flex justify-content-center ">
         <form  id="questionForm">
             @foreach ($questions as $question)
-            <div class="card bg-light mb-3" style="max-width: 24rem;">
-                <div class="card-header">{{$question->question}}</div>
+            <div class="card bg-light mb-3" style="max-width: 40rem;">
+                <div class="card-header"><span><span style="font-size: 20px;">{{$page_req=request('page')}}- </span>{{$question->question}}</span>  ?</div>
                 <div class="card-body">
                     
                         @csrf
@@ -80,7 +87,12 @@
                         let parent2=$('.parent2');
 
                         if(questions == ''){
-                            $('#load').text('you finished the exam and you get '+ degree +'/'+ (page-1));
+                            let load=$('#load');
+                            load.show();
+
+                            load
+                            .text('you finished the exam and you get '+ degree +'/'+ (page-1));
+
                             parent2.remove();
                             return
                         }
@@ -88,6 +100,14 @@
                         parent2.remove();
                         $('.parent').append(questions);
                     }
+                },
+                error:function(res){
+                    let response=$.parseJSON(res.responseText);
+                    let error=response.error;
+                    let finish=$('#exam_finish');
+
+                    finish.show();
+                    finish.text(error);
                 }
             });
             }

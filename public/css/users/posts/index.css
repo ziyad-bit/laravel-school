@@ -1,0 +1,103 @@
+.card{
+    margin-top: 30px;
+    min-width: 35rem !important;
+}
+
+@media(max-width:576px){
+    .card{
+        max-width: 24rem !important;
+        min-width: 24rem !important;
+    }
+}
+
+.card-top img{
+    height    : 45px;
+    width     : 45px;
+    max-width : 50px;
+    max-height: 50px;
+}
+
+.card-header p{
+    margin-top: 5px;
+}
+
+.card-header small{
+    margin-left: 5px;
+}
+
+.card-header span{
+    margin-left: 3px;
+    font-weight: bold;
+}
+
+.card .card-body{
+    padding: 0;
+    padding-top: 10px;
+}
+
+.comment_btn:hover{
+    cursor: pointer;
+    background-color: #fff !important;
+}
+
+.card-body i{
+    margin-right: 5px;
+    font-size: larger;
+}
+
+.card-bottom{
+    border-top: 1px solid rgba(0,0,0,.125);
+}
+
+.card-bottom img{
+    height    : 30px;
+    width     : 30px;
+    max-width : 50px;
+    max-height: 50px;
+}
+
+.card-body p{
+    font-weight: bold;
+}
+
+.comment span{
+    font-size: small;
+}
+
+.comment p{
+    margin-left: 30px;
+    font-size: .9375rem;
+}
+
+.card-bottom small:hover{
+    cursor: pointer;
+    color: gray;
+}
+
+.comment{
+    margin-top: 15px;
+}
+
+.card-header textarea{
+    width: 490px;
+    margin-left: 30px;
+}
+
+@media(max-width:576px){
+    .card-header textarea{
+        width: 320px;
+        margin-left: 30px;
+    }
+}
+
+.card-header .img_input{
+    position: relative;
+    top: 10px;
+}
+
+.number_comments{
+    display: flex;
+    justify-content: flex-end;
+}
+
+

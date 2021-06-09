@@ -23,6 +23,7 @@ class CreateExamsTable extends Migration
             $table->string('token',100)->unique();
             $table->timestamps();
             $table->foreignId('level_id')->constrained('levels')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('subject_id')->constrained('subjects')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

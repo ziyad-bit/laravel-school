@@ -1,9 +1,9 @@
 
-<div class="parent2">
+<div class="parent2 d-flex justify-content-center">
     <form  id="questionForm">
         @foreach ($questions as $question)
         <div class="card bg-light mb-3" style="max-width: 24rem;">
-            <div class="card-header">{{$question->question}}</div>
+            <div class="card-header"><span style="font-size: 20px">{{$page_request}}</span>-<span>  {{$question->question}}?</span></div>
             <div class="card-body">
                 
                     @csrf

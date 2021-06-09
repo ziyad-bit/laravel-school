@@ -15,4 +15,9 @@ class Levels extends Model
     {
         return $q->select('id','name');
     }
+
+    public function subjects()
+    {
+        return $this->belongsToMany('App\Model\Subjects','subjects_level','level_id','subject_id');
+    }
 }

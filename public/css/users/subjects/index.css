@@ -1,0 +1,11 @@
+table{
+    margin-top: 20px;
+}
+
+tr:nth-child(even) {
+    background-color:#dfe6e9!important;
+}
+
+.alert{
+    margin-top: 20px;
+}

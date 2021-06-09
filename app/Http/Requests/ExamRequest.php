@@ -25,7 +25,7 @@ class ExamRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'             => 'required|string|min:2',
+            'subject'          => 'required',
             'level'            => 'required',
             'term'             => 'required',
             'number_of_questions' => [
