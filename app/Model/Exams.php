@@ -14,14 +14,14 @@ class Exams extends Model
 
     public function scopeSelection($q)
     {
-        return $q->select('number_of_questions','name','id','level_id','active'
+        return $q->select('number_of_questions','name','id','level_id'
                         ,'date','term','created_at');
     }
 
     public function scopeUserSelection($q)
     {
         return $q->select('number_of_questions','name','id','token','duration'
-                        ,'created_at','updated_at','active');
+                        ,'created_at','updated_at');
     }
 
     public function scopeActive($q)

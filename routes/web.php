@@ -31,19 +31,20 @@ Route::group(['prefix'=>'exams','namespace'=>'users'],function(){
 ###############################      subjects      #####################################
 Route::group(['prefix'=>'subjects','namespace'=>'users'],function(){
     Route:: get   ('/get'                    ,'SubjectsController@index');
-  
+    
 });
 
 ###############################      degrees       #####################################
 Route::group(['prefix'=>'degrees','namespace'=>'users'],function(){
     Route:: get   ('/get/{id}'               ,'DegreesController@index');
-    Route:: get   ('/paypal'               ,'DegreesController@show');
+    
 });
 
 ###############################      paypal        #####################################
 Route::group(['prefix'=>'paypal','namespace'=>'users'],function(){
-    Route:: get   ('/get/{id}'               ,'DegreesController@index');
-    Route:: post   ('/post'               ,'PaypalController@index');
+    Route:: get   ('/show/{id}'              ,'PaypalController@show');
+    Route:: get   ('/get/{id}'               ,'PaypalController@paypalReturn');
+    Route:: post   ('/post/{id}'             ,'PaypalController@index');
 });
 
 ###############################      posts         #####################################

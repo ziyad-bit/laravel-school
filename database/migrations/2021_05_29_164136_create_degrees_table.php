@@ -15,8 +15,9 @@ class CreateDegreesTable extends Migration
     {
         Schema::create('degrees', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('degrees',false,false);
-            $table->tinyInteger('finish',false,false)->default(0);
+            $table->tinyInteger('degrees',false,true);
+            $table->tinyInteger('finish',false,true)->default(0);
+            $table->tinyInteger('grievance',false,true)->default(0);
             $table->timestamps();
             $table->foreignId('exam_id')->constrained('exams')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');

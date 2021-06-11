@@ -23,8 +23,8 @@ class DegreesController extends Controller
         $degrees_id=$degrees->where('user_id',Auth::user()->id)->pluck('id')->toArray();
 
         $exam_degrees=Exams::with('degrees')->whereHas('degrees',function($q) use($degrees_id){
-            $q->whereIn('id',$degrees_id);
-        })->get();
+            $q->selection()->whereIn('id',$degrees_id);
+        })->userSelection()->get();
 
         return view('users.degrees.index',compact('exam_degrees'));
     }
@@ -58,7 +58,7 @@ class DegreesController extends Controller
      */
     public function show()
     {
-        return view('users.degrees.paypal');
+        
     }
 
     /**

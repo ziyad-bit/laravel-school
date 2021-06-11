@@ -8,6 +8,7 @@
     @if (Session::has('error'))
         <div class="alert alert-danger text-center">{{ Session::get('error') }}</div> 
     @endif
+    
     <table class="table" >
         <thead class="thead-dark">
             <tr>
@@ -27,13 +28,17 @@
                         @foreach ($exam_degree->degrees as $degree)
                             <td>{{$degree->degrees . '/' . $exam_degree->number_of_questions}}</td>
                             <th scope="row">{{$degree->created_at}}</th>
+
+                            <td>
+                                @if ($degree->grievance == 0)
+                                    <a href="{{url('paypal/show/'.$degree->id)}}" class='btn btn-primary'>
+                                        grievance
+                                    </a>
+                                @endif
+                            
+                            </td>
                         @endforeach
                         
-                        <td>
-                            <a href="{{url('exam_degrees/get')}}" class='btn btn-primary'>
-                                grievance
-                            </a>
-                        </td>
                     </tr>
                 @endforeach
             @endif

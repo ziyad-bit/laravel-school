@@ -16,10 +16,10 @@ class CreateExamsTable extends Migration
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
             $table->string('name',30);
-            $table->tinyInteger('term',false,false);
-            $table->tinyInteger('active',false,false)->default(0);
-            $table->tinyInteger('number_questions',false,false);
-            $table->tinyInteger('duration',false,false);
+            $table->tinyInteger('term',false,true);
+            $table->tinyInteger('active',false,true)->default(0);
+            $table->tinyInteger('number_questions',false,true);
+            $table->tinyInteger('duration',false,true);
             $table->string('token',100)->unique();
             $table->timestamps();
             $table->foreignId('level_id')->constrained('levels')->onDelete('cascade')->onUpdate('cascade');

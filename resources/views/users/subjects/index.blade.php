@@ -8,6 +8,11 @@
     @if (Session::has('error'))
         <div class="alert alert-danger text-center">{{ Session::get('error') }}</div> 
     @endif
+
+    @if (Session::has('success'))
+        <div class="alert alert-success text-center">{{ Session::get('success') }}</div> 
+    @endif
+
     <table class="table" >
         <thead class="thead-dark">
             <tr>
