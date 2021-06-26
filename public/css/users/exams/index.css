@@ -1,3 +1,9 @@
+table{
+    position: relative;
+    top: 85px;
+    width: 80% !important;
+    left: 10%;
+}
 
 tr:nth-child(even) {
     background-color:#dfe6e9!important;

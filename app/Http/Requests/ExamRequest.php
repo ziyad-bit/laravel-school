@@ -25,13 +25,13 @@ class ExamRequest extends FormRequest
     public function rules()
     {
         return [
-            'subject'          => 'required',
-            'level'            => 'required',
-            'term'             => 'required',
-            'number_of_questions' => [
-                'required',
-                Rule::notIn([0]),
-            ],
+            'name'                => 'required',
+            'level'               => 'required',
+            'term'                => 'required',
+            'date'                => 'required',
+            'subject_id'          => 'required',
+            'duration'            => 'required|numeric|min:1',
+            'number_of_questions' => 'required_without:id|min:1|numeric'
         ];
     }
 
@@ -39,7 +39,7 @@ class ExamRequest extends FormRequest
     {
         return [
             'required' => 'this field is required',
-            'name.min' => 'you should enter at least 2 characters',
+            'min'      => 'this field must be at least 1'
         ];
     }
 }

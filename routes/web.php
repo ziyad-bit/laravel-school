@@ -49,8 +49,15 @@ Route::group(['prefix'=>'paypal','namespace'=>'users'],function(){
 
 ###############################      posts         #####################################
 Route::group(['prefix'=>'posts','namespace'=>'users'],function(){
-    Route:: get   ('/get'            ,'PostsController@index');
-    Route:: post   ('/post'               ,'PaypalController@index');
+    Route:: any   ('/get'                   ,'PostsController@index');
+    Route:: any   ('/download/{file}'       ,'PostsController@download');
+});
+
+###############################      comments         #####################################
+Route::group(['prefix'=>'comments','namespace'=>'users'],function(){
+    Route:: post   ('/store'                 ,'CommentsController@store');
+    Route:: post   ('/delete'                ,'CommentsController@delete');
+    Route:: post   ('/update'                ,'CommentsController@update');
 });
 
 

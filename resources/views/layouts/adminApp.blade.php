@@ -11,5 +11,7 @@
     </div>
     
     @include('admins.includes.footer')
+
+    @yield('script')
 </body>
 </html>

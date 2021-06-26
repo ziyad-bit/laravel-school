@@ -1,6 +1,9 @@
 .navbar {
     background-color: #0070ba;
     background-image: linear-gradient( 100deg, #0070ba, #1546a0);
+    position        : fixed !important;
+    z-index         : 10;
+    width           : 100%;
 }
 
 .navbar-brand{
@@ -103,7 +106,7 @@ body .sidebar_wrapper {
     font-size: x-large;
 }
 
-i:hover {
+.navbar i:hover {
     cursor: pointer;
     color : #b2bec3;
 }

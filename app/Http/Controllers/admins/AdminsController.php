@@ -5,8 +5,7 @@ namespace App\Http\Controllers\admins;
 use App\Model\admins;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\{Auth,Redirect};
 
 class AdminsController extends Controller
 {

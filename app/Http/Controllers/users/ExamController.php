@@ -52,12 +52,14 @@ class ExamController extends Controller
             $page_stored=$degree->page;
         }
         
-        if(isset($request->page) && isset($page_stored) ){
+        if(isset($request->page)  ){
             $page_request = $request->page;
-
-            if ($page_request < $page_stored) {
-                return redirect('exams/show/'.$token .'?page='.$page_stored);
+            if ( isset($page_stored)) {
+                if ($page_request < $page_stored) {
+                    return redirect('exams/show/'.$token .'?page='.$page_stored);
+                }
             }
+            
         }
             
         if (!$request->has('agax')) {

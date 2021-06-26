@@ -8,8 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link" href="{{url('admins/exams/show')}}">exams </a>
-                <a class="nav-link" href="#">Features</a>
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="{{url('admins/posts/index')}}">posts</a>
                 <a class="nav-link " href="{{url('admins/logout')}}" >logout</a>
             </div>
         </div>

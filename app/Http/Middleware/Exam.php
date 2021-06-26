@@ -21,10 +21,15 @@ class Exam
     {
         $user=Auth::user();
         $error='you are not allowed to join this exam';
-        
-        $exam=Exams::where('token',request('token'))->active()->first();
+        $token=request('token');
+
+        $exam=Exams::where('token',$token)->active()->first();
         if (!$exam && $request->has('agax')) {
             return response()->json(['error'=>'the duration of exam is finished'],400);
+        }
+        
+        if (url()->full() == 'http://localhost:8000/exams/show/'.$token) {
+            return redirect('exams/get');
         }
 
         if(! $exam){

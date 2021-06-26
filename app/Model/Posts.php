@@ -8,12 +8,13 @@ class Posts extends Model
 {
     protected $table='posts';
     protected $fillable = [
-        'post','photo','admin_id','level_id','fixed','updated_at','created_at',
+        'post','photo','admin_id','level_id','fixed','updated_at','created_at','file','video'
     ];
 
     public function scopeSelection($q)
     {
-        return $q->select('post','photo','created_at','id','admin_id');
+        return $q->select('post','photo','created_at','id'
+                        ,'admin_id','level_id','file','video');
     }
 
     public function comments()

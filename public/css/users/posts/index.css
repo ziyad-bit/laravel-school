@@ -1,8 +1,7 @@
-html{
-    scroll-behavior: smooth;
-}
 
 .card{
+    position  : relative;
+    top       : 70px;
     margin-top: 30px;
     min-width : 35rem !important;
 }
@@ -14,13 +13,42 @@ html{
     }
 }
 
-.card-top img{
+.card-top .rounded-circle{
     max-width : 45px;
     max-height: 45px;
 }
 
+.card-top .image{
+    min-width:100% ;
+    max-width:100% ;
+}
+
 .card-top p{
     margin-top: 5px;
+}
+
+.card-top embed{
+    width : 520px;
+    height: 300px;
+    max-height: 300px;
+}
+
+.card-top .btn-primary{
+    margin-bottom: 5px;
+    color: #fff;
+    padding: 5px;
+}
+
+.card-top .fa-arrow-down{
+    margin-right: 3px;
+}
+
+.card-top video{
+    max-width : 100%;
+}
+
+.card-top embed{
+    max-width : 100%;
 }
 
 .card-header small{
@@ -80,13 +108,17 @@ html{
     font-size  : .9375rem;
 }
 
-.card-bottom small:hover{
+.card-bottom .view_comments:hover{
     cursor: pointer;
     color : gray;
 }
 
 .comment{
     margin-top: 15px;
+}
+
+.comment:nth-child(even){
+    background-color: #dfe6e9;
 }
 
 .card-header textarea{
@@ -101,7 +133,11 @@ html{
     }
 }
 
-.card-bottom small{
+.form_comment small{
+    margin-left: 32px;
+}
+
+.card-bottom small:nth-child(1) {
     display: block;
 }
 
@@ -110,9 +146,46 @@ html{
     top     : 10px;
 }
 
+.card-bottom p{
+    position: relative;
+}
+
+.card-bottom .fa-trash{
+    position: absolute;
+    right   : 5px;
+    top     : 5px;
+    color   : #e74c3c;
+}
+
+.card-bottom .fa-edit{
+    position: absolute;
+    right   : 30px;
+    top     : 5px;
+    color   : #0070ba;
+}
+
+.card-bottom .fa-trash,.fa-edit:hover{
+    cursor: pointer;
+}
+
 .number_comments{
     display        : flex;
     justify-content: flex-end;
+    margin-top: 10px;
 }
+
+#load{
+    position      : relative;
+    top           : 70px;
+    padding-bottom: 50px;
+}
+
+#update_input{
+    height  : fit-content;
+}
+
+
+
+
 
 

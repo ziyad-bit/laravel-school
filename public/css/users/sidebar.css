@@ -1,21 +1,27 @@
 .sidebar_wrapper{
-    height      : 156%;
-    width       : 100%;
+    position    : fixed;
+    top         : 75px;
+    height      : 100%;
+    width       : 19%;
     border-right: 1px solid #0070ba;
+    
 }
 
 @media(max-width:768px){
     .sidebar_wrapper{
-        display  : none;
-        width: 75%;
+        display: none;
+        width  : 75%;
     }
 }
 
 @media(min-width:768px){
     .sidebar_wrapper{
-        display  : block !important;
+        display: block !important;
     }
 }
+
+
+
 
 #sidebar .list-unstyled{
     margin-left: 0 ;
@@ -42,6 +48,22 @@
     -o-transition     : left 0.3s ;
 }
 
+@media(max-width:768px){
+    .sidebar_links li {
+        left              : 140px;
+    }
+
+    .sidebar_links li:hover{
+        left: 148px !important;
+    }
+}
+
+@media(max-width:576px){
+    .sidebar_links li {
+        left              : 40px;
+    }
+}
+
 .sidebar_links li:hover{
     left: 48px;
 }
@@ -52,7 +74,7 @@
     }
 
     .sidebar_wrapper{
-        width  : 75%;
+        width: 75%;
     }
 }
 

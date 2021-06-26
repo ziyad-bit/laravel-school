@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\admins;
 
-use App\Model\Exams;
-use App\Model\Levels;
+use App\Model\{Exams,Levels,Subjects};
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\ExamRequest;
 use App\Http\Controllers\Controller;
-use App\model\Subjects;
 use Illuminate\Support\Facades\Redirect;
 
 class ExamController extends Controller
@@ -48,8 +46,9 @@ class ExamController extends Controller
         $token=Str::random(20);
 
         $exam=Exams::create([
-            'subject'             => $request->subject,
+            'name'                => $request->name,
             'date'                => $request->date,
+            'subject_id'          => $request->subject_id,
             'level_id'            => $request->level,
             'number_of_questions' => $request->number_of_questions,
             'term'                => $request->term,
@@ -77,21 +76,52 @@ class ExamController extends Controller
     public function active($id)
     {
         $exam=Exams::find($id);
+        if (! $exam) {
+            return redirect()->back()->with(['error'=>'not found']);
+        }
         $exam->update([
             'active'=>1
         ]);
 
         return redirect()->back()->with(['success'=>'you activated it']);
     }
+
+    ################################     update number of questions   #####################
+    public function update_number_questions(Request $request)
+    {
+        $exam_id=$request->id;
+        $exam=Exams::find($exam_id);
+        if (! $exam) {
+            return redirect()->back()->with(['error'=>'not found']);
+        }
+
+        $number_of_questions_request=$request->number_of_questions;
+
+        $exam->number_of_questions+=$number_of_questions_request;
+        $exam->save();
+
+        return view('admins\questions\add',compact('number_of_questions_request','exam_id'));
+    }
+
+    
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Exam  $exam
      * @return \Illuminate\Http\Response
      */
-    public function edit(Exam $exam)
+    ##################################      edit        ##################################
+    public function edit($id)
     {
-        //
+        $subjects=Subjects::selection()->get();
+        $levels=Levels::selection()->get();
+
+        $exam=Exams::find($id);
+        if (!$exam) {
+            return redirect()->back()->with(['error'=>'not found']);
+        }
+
+        return view('admins\exams\edit',compact('exam','subjects','levels'));
     }
 
     /**
@@ -101,9 +131,23 @@ class ExamController extends Controller
      * @param  \App\Models\Exam  $exam
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Exam $exam)
+    ##################################      update        ##################################
+    public function update($id ,ExamRequest $request)
     {
-        //
+        $exam=Exams::find($id);
+        if (!$exam) {
+            return redirect()->back()->with(['error'=>'not found']);
+        }
+
+        $exam->name                = $request->name;
+        $exam->date                = $request->date;
+        $exam->subject_id          = $request->subject_id;
+        $exam->level_id            = $request->level;
+        $exam->duration            = $request->duration;
+        $exam->term                = $request->term;
+
+        $exam->save();
+        return redirect()->back()->with(['success'=>'you successfully updated exam']);
     }
 
     /**
@@ -112,8 +156,16 @@ class ExamController extends Controller
      * @param  \App\Models\Exam  $exam
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Exam $exam)
+    ##################################      delete        ##################################
+    public function delete($id)
     {
-        //
+        $exam=Exams::find($id);
+        if (!$exam) {
+            return redirect()->back()->with(['error'=>'not found']);
+        }
+
+        $exam->delete();
+
+        return redirect()->back()->with(['success'=>'you successfully deleted it']);
     }
 }

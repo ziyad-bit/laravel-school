@@ -13,7 +13,7 @@ class Comments extends Model
 
     public function scopeSelection($q)
     {
-        return $q->select('comment','created_at','user_id','admin_id','post_id');
+        return $q->select('comment','created_at','user_id','admin_id','post_id','id');
     }
 
     public function posts()
