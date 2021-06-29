@@ -22,7 +22,7 @@ body .sidebar_wrapper {
     margin-left: 20px;
 }
 
-.logout {
+.navbar_left {
     position: relative;
     top     : 10px;
 }
@@ -66,14 +66,14 @@ body .sidebar_wrapper {
     color    : aliceblue;
 }
 
-.logout .search_icon {
+.navbar_left .search_icon {
     right  : 115%;
     top    : 11px;
     display: none;
 }
 
 @media(max-width:576px) {
-    .logout .search_icon {
+    .navbar_left .search_icon {
         display: inline-block;
     }
 }
@@ -81,6 +81,39 @@ body .sidebar_wrapper {
 .fa-bell {
     right: 60px;
     top  : 11px;
+}
+
+.notifications{
+    position: absolute;
+    z-index : 4;
+    top     : 60px;
+    right   : 40px;
+}
+
+.notifications small{
+    margin-left: 20px;
+}
+
+.notifications .rounded-circle{
+    max-height  : 50px;
+    margin-right: 10px;
+}
+
+.notifications p{
+    position: relative;
+    right   : -71px;
+    bottom  : 22px;
+}
+
+.list-group-item{
+    padding-bottom: 0 !important;
+}
+
+#notifs_count{
+    position: relative;
+    left    : 16px;
+    bottom  : 15px;
+    color   : red;
 }
 
 .container .fa-arrow-left, .fa-align-left {
@@ -110,3 +143,4 @@ body .sidebar_wrapper {
     cursor: pointer;
     color : #b2bec3;
 }
+

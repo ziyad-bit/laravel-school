@@ -22,6 +22,12 @@ class Admins extends Authenticatable
         return $this->hasMany('App\Model\Posts','admin_id');
     }
 
+    public function exams()
+    {
+        return $this->hasMany('App\Model\Exams','admin_id');
+    }
+
+
     public function comments()
     {
         return $this->hasMany('App\Model\Comments','admin_id');

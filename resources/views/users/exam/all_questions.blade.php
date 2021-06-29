@@ -19,7 +19,7 @@
                                 > {{$question->choice2}}
                         </label>
                     </div>
-                    @if (isset($question->choice3))
+                    @if ($question->choice3)
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="radio" class="form-check-input" name="choice" value="choice3"
@@ -28,7 +28,7 @@
                         </div>
                     @endif
     
-                    @if (isset($question->choice4))
+                    @if ($question->choice4)
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="radio" class="form-check-input" name="choice" value="choice4"
@@ -38,7 +38,7 @@
                     
                     @endif
     
-                    @if (isset($question->choice5))
+                    @if ($question->choice5)
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="radio" class="form-check-input" name="choice" value="choice5"

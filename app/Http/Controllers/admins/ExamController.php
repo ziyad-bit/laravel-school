@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\admins;
 
-use App\Model\{Exams,Levels,Subjects};
+use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\ExamRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use App\Model\{Degrees, Exams,Levels,Subjects};
 
 class ExamController extends Controller
 {
@@ -50,6 +52,7 @@ class ExamController extends Controller
             'date'                => $request->date,
             'subject_id'          => $request->subject_id,
             'level_id'            => $request->level,
+            'admin_id'            => Auth::user()->id,
             'number_of_questions' => $request->number_of_questions,
             'term'                => $request->term,
             'duration'            => $request->duration,
@@ -79,6 +82,16 @@ class ExamController extends Controller
         if (! $exam) {
             return redirect()->back()->with(['error'=>'not found']);
         }
+
+        $users=User::where('level_id',$exam->level_id)->get();
+        foreach ($users as  $user) {
+            Degrees::create([
+                'exam_id'    => $exam->id,
+                'user_id'    => $user->id,
+                'subject_id' => $exam->subject_id,
+            ]);
+        }
+
         $exam->update([
             'active'=>1
         ]);

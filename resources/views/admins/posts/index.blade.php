@@ -18,19 +18,19 @@
         </thead>
         <tbody>
             @foreach ($posts as $post)
-            <tr>
-                <th scope="row">{{$post->id}}</th>
-                <td>{{$post->post}}</td>
-                <td>{{$post->level_id}}</td>
-                <td>
-                    <a href="{{url('admins/posts/active/'.$post->id)}}" class='btn btn-primary'>
-                        edit
-                    </a>
-                    <a href="{{url('admins/posts/active/'.$post->id)}}" class='btn btn-primary'>
-                        delete
-                    </a>
-                </td>
-            </tr>
+                <tr>
+                    <th scope="row">{{$post->id}}</th>
+                    <td>{{$post->post}}</td>
+                    <td>{{$post->level_id}}</td>
+                    <td>
+                        <a href="{{url('admins/posts/edit/'.$post->id)}}" class='btn btn-primary'>
+                            edit
+                        </a>
+                        <a href="{{url('admins/posts/delete/'.$post->id)}}" class='btn btn-danger'>
+                            delete
+                        </a>
+                    </td>
+                </tr>
             @endforeach
             
         </tbody>

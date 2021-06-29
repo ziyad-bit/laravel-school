@@ -25,4 +25,9 @@ class Subjects extends Model
     {
         return $this->hasMany('App\Model\Degrees','subject_id');
     }
+
+    public function exams()
+    {
+        return $this->hasMany('App\Model\Exams','subject_id');
+    }
 }

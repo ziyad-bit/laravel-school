@@ -63,8 +63,7 @@
 @endsection
 
 @section('script')
-    <script>
-        //scroll to comment_input
+    <script> 
         function generalEventListener(type, selector, callback) {
             document.addEventListener(type, e => {
                 if (e.target.matches(selector)) {
@@ -73,6 +72,7 @@
             })
         }
 
+        //scroll to comment_input
         generalEventListener('click', '.comment_btn', e => {
             let id    = e.target.id,
                 input = document.getElementById('input' + id);
@@ -258,7 +258,6 @@
 
                 $('#more_posts').append(posts)
                 $('#load').hide()
-
             })
         }
 

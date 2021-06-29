@@ -10,12 +10,12 @@
         <div class="card bg-light mb-3 " style="max-width:24rem;margin-top: 40px">
             <div class="card-header">Post</div>
             <div class="card-body">
-                <form id="post_form" action="{{ url('admins/posts/store') }}" method="POST" enctype="multipart/form-data">
+                <form id="post_form" action="{{ url('admins/posts/update/'.$post->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
     
                     <div class="form-group">
                         <label for="exampleInputname1">text </label>
-                        <textarea name="post" class="form-control" cols="15" rows="5"></textarea>
+                        <textarea name="post"  class="form-control" cols="15" rows="5">{{$post->post}}</textarea>
                         <small style="color:red" id="post_err">
                             
                         </small>
@@ -33,7 +33,7 @@
                         <label for="exampleInputname1">file </label>
                         <input type="file" name="file" class="form-control">
                         <small style="color:red" id="file_err">
-                          
+                            
                         </small>
                     </div>
     
@@ -48,23 +48,9 @@
                     <div class="form-group">
                         <label for="exampleInputPassword1">level</label>
                         <select name="level" class="form-control">
-                            <option value="">....</option>
-                            @foreach ($levels as $level)
-                                <option value="{{ $level->id }}">{{ $level->name }}</option>
-                            @endforeach
-                        </select>
-    
-                        <small style="color:red" id="level_err">
                             
-                        </small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">subject</label>
-                        <select name="subject" class="form-control">
-                            <option value="">....</option>
-                            @foreach ($subjects as $subject)
-                                <option value="{{ $subject->name }}">{{ $subject->name }}</option>
+                            @foreach ($levels as $level)
+                                <option value="{{ $level->id }}" {{$post->level_id == $level->id ? 'selected' : null}}>{{ $level->name }}</option>
                             @endforeach
                         </select>
     
@@ -76,13 +62,12 @@
                     <div class="form-group">
                         <label for="exampleInputPassword1">fixed</label>
                         <select name="fixed" class="form-control">
-                            <option value="">....</option>
-                            <option value="1">yes</option>
-                            <option value="0">no</option>
+                            <option value="1" {{$post->fixed == 1 ? 'selected' : null}}>yes</option>
+                            <option value="0" {{$post->fixed == 0 ? 'selected' : null}}>no</option>
                         </select>
     
                         <small style="color:red" id="fixed_err">
-                           
+                            
                         </small>
                     </div>
                     <button type="submit" class="btn btn-primary submit_btn">Submit</button>
@@ -99,7 +84,7 @@
     </div>
 
     <div class="alert alert-success text-center" style="display: none">
-        you successfully created the post
+        you successfully updated the post
     </div>
 @endsection
 
@@ -109,7 +94,7 @@
         $(function() {
             let progress_bar = $('.progress-bar');
             let progress = $('.progress')
-            $('form').ajaxForm({
+            $('#post_form').ajaxForm({
                 beforeSend: function() {
                     progress.show()
                     document.getElementsByClassName('progress')[0].scrollIntoView({

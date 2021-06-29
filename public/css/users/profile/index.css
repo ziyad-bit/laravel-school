@@ -1,0 +1,32 @@
+.card{
+    position: relative;
+    top: 110px;
+    width: 100%;
+}
+
+.card img{
+    height: 100%;
+    width: 100%;
+}
+
+.list-group span{
+    font-weight: bold;
+}
+
+.profile_span{
+    margin-right: 5px;
+}
+
+.edit_btn{
+    position: relative;
+    top: 90px;
+    left: 15%;
+}
+
+.list-group{
+    height: 100%;
+}
+
+.list-group-item{
+    height: 100% ;
+}

@@ -5,7 +5,7 @@ namespace App\Traits;
 use Intervention\Image\Facades\Image;
 
 trait UploadImage{
-    public function uploadphoto($image,$path){
+    public function uploadphoto($image,string $path):string{
         $file     = $image;
         $img = Image::make($file)->resize(500, null, function ($constraint) {
             $constraint->aspectRatio();

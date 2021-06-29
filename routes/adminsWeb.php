@@ -44,6 +44,9 @@ Route::group(['prefix'=>'questions','namespace'=>'admins'],function(){
 ###############################      posts      #####################################
 Route::group(['prefix'=>'posts','namespace'=>'admins'],function(){
     Route:: get   ('/index'       ,'PostsController@index');
+    Route:: get   ('/delete/{id}' ,'PostsController@delete');
+    Route:: get   ('/edit/{id}'   ,'PostsController@edit');
+    Route:: post  ('/update/{id}' ,'PostsController@update');
     Route:: get   ('/create'      ,'PostsController@create');
     Route:: post  ('/store'       ,'PostsController@store');
 });

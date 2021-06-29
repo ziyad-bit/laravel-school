@@ -18,7 +18,7 @@ class Degrees extends Model
 
     public function exams()
     {
-        return $this->hasMany('App\Model\Exams','exam_id');
+        return $this->belongsTo('App\Model\Exams','exam_id');
     }
 
     public function subjects()

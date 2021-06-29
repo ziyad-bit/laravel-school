@@ -18,9 +18,8 @@ class ExamController extends Controller
     #####################################      index        #################################
     public function index()
     {
-        $exams = Exams::doesntHave('degrees')->userSelection()
-                    ->where('level_id', Auth::user()->level_id)
-                    ->where('term', Auth::user()->term)->active()->get();
+        $inactive_exams = Exams::userSelection()->where('level_id', Auth::user()->level_id)
+                    ->where('term', Auth::user()->term)->where('active',0)->get();
 
         $degree = Degrees::where('finish', 0)->where('user_id', Auth::user()->id)
             ->first();
@@ -32,7 +31,7 @@ class ExamController extends Controller
             $exam = null;
             $page = null;
         }
-        return view('users.exam.index', compact('exams', 'exam', 'page'));
+        return view('users.exam.index', compact('inactive_exams', 'exam', 'page'));
     }
 
     #####################################      show        #################################
@@ -59,21 +58,12 @@ class ExamController extends Controller
                     return redirect('exams/show/'.$token .'?page='.$page_stored);
                 }
             }
-            
         }
             
-        if (!$request->has('agax')) {
-            if (!$degree) {
-                $degree = Degrees::create([
-                    'degrees'    => 0,
-                    'exam_id'    => $exam_id,
-                    'user_id'    => Auth::user()->id,
-                    'subject_id' => $exam->subject_id
-                ]);
-            }
-        } else {
+        if ($request->has('agax')) {
             $student_ans = $request->choice;
             $correct_ans = Questions::find($request->id)->correct_ans;
+
             $degree->page = $page_request;
             $degree->save();
 
@@ -94,13 +84,8 @@ class ExamController extends Controller
             }
 
             return response()->json(['html' => $view]);
-        }
+        } 
 
         return view('users.exam.show', compact('questions'));
-    }
-
-    #####################################      store        #################################
-    function continue ($token) {
-
     }
 }

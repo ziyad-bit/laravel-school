@@ -28,15 +28,28 @@ Route::group(['prefix'=>'exams','namespace'=>'users'],function(){
     Route:: get   ('/continue'               ,'ExamController@continue');
 });
 
+###############################      notifications        #####################################
+Route::group(['prefix'=>'notifications','namespace'=>'users'],function(){
+    Route:: get   ('/get'    ,'NotificationsController@index');
+    Route:: get   ('/update' ,'NotificationsController@update');
+});
+
 ###############################      subjects      #####################################
 Route::group(['prefix'=>'subjects','namespace'=>'users'],function(){
-    Route:: get   ('/get'                    ,'SubjectsController@index');
+    Route:: get   ('/get'      ,'SubjectsController@index');
     
+});
+
+###############################      profile      #####################################
+Route::group(['prefix'=>'profile','namespace'=>'users'],function(){
+    Route:: get   ('/get'      ,'ProfileController@index');
+    Route:: get   ('/edit'     ,'ProfileController@edit');
+    Route:: post  ('/update'   ,'ProfileController@update');
 });
 
 ###############################      degrees       #####################################
 Route::group(['prefix'=>'degrees','namespace'=>'users'],function(){
-    Route:: get   ('/get/{id}'               ,'DegreesController@index');
+    Route:: get   ('/get/{id}'      ,'DegreesController@index');
     
 });
 

@@ -6,7 +6,7 @@ trait CommentRules{
     public function commentRules()
     {
         return [
-            'comment'=>'required|max:3'
+            'comment'=>'required|max:300'
         ];
     }
 

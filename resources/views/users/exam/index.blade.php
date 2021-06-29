@@ -14,6 +14,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">subject</th>
                 <th scope="col">duration </th>
+                <th scope="col">date </th>
                 <th scope="col">control</th>
                 
             </tr>
@@ -25,14 +26,17 @@
                     <td>{{$exam->name}}</td>
                     <td>{{$exam->duration}} mins</td>
                     <td>
+                        {{$exam->date}}
+                    </td>
+                    <td>
                         <a href="{{url('exams/show/'.$exam->token.'?page='.$page)}}" class='btn btn-primary'>
-                            continue
+                            start
                         </a>
                     </td>
                     
                 </tr>
             @else
-                @foreach ($exams as $exam)
+                @foreach ($inactive_exams as $exam)
                 
                 
                     <tr>
@@ -40,10 +44,11 @@
                         <td>{{$exam->name}}</td>
                         <td>{{$exam->duration.' min'}}</td>
                         <td>
-                            <a href="{{url('exams/show/'.$exam->token.'?page=1')}}" class='btn btn-primary'>
-                                start
-                            </a>
-                                
+                            {{$exam->date}}
+                        </td>
+
+                        <td>
+                            
                         </td>
                         
                     </tr>

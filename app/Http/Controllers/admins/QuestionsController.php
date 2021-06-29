@@ -76,7 +76,7 @@ class QuestionsController extends Controller
 
         Questions::insert($exam_questions_arr);
 
-        return Redirect::to('admins/exams/index')->with(['success'=>'you added successfully questions']);
+        return Redirect::to('admins/exams/show')->with(['success'=>'you added successfully questions']);
     }
 
     /**

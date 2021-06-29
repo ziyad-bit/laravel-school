@@ -9,8 +9,8 @@
             </div>
         </a>
 
-        <a href="">
-            <div class="links">
+        <a href="{{url('profile/get')}}">
+            <div class="links profile">
                 <li>
                     <i class="fas fa-user"></i>
                     <span>profile</span>
@@ -51,18 +51,47 @@
 
 @section('sidebar_script')
     <script>
-        if(window.location.pathname == '/exams/get'){
-            $('.exams').addClass('active');
-        }
+        $(function(){
+            //active links
+            if(window.location.pathname == '/exams/get'){
+                $('.exams').addClass('active');
+            }
 
-        if(window.location.pathname == '/subjects/get'){
-            $('.subjects').addClass('active');
-        }
+            if(window.location.pathname == '/subjects/get'){
+                $('.subjects').addClass('active');
+            }
 
-        if(window.location.pathname == '/home'){
-            $('.home').addClass('active');
-        }
+            if(window.location.pathname == '/home'){
+                $('.home').addClass('active');
+            }
 
-        
+            if(window.location.pathname == '/posts/get'){
+                $('.posts').addClass('active');
+            }
+
+            if(window.location.pathname == '/profile/get'){
+                $('.profile').addClass('active');
+            }
+
+            //responsive sidebar
+            let content     = $('.content'),
+            sidebar_wrapper = $('.sidebar_wrapper');
+
+            $(window).on('resize', function () {
+                if($(window).width() >= 768){
+                    content.show();
+                }
+                
+                if($(window).width() <= 768){
+                    sidebar_wrapper.hide();
+                }
+            });
+
+            $('body').on('click','.fa-align-left', function () {
+                content.toggle();
+                sidebar_wrapper.toggle();
+                
+            });
+        })
     </script>
 @endsection

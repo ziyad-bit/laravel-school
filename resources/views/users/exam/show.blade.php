@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div class="alert alert-success text-center" id="load" style="display: none"></div>
+<div class="alert alert-success text-center" id="success" style="display: none"></div>
 <div class="alert alert-danger text-center" id="exam_finish" style="display: none"></div>
 
 <div class="parent">
@@ -30,7 +30,7 @@
                                     > {{$question->choice2}}
                             </label>
                         </div>
-                        @if (isset($question->choice3))
+                        @if ($question->choice3)
                             <div class="form-check">
                                 <label class="form-check-label">
                                     <input type="radio" class="form-check-input" name="choice" value="choice3"
@@ -38,7 +38,7 @@
                                 </label>
                             </div>
                         @endif
-                        @if (isset($question->choice4))
+                        @if ($question->choice4)
                             <div class="form-check">
                                 <label class="form-check-label">
                                     <input type="radio" class="form-check-input" name="choice" value="choice4"
@@ -46,7 +46,7 @@
                                 </label>
                             </div>
                         @endif
-                        @if (isset($question->choice5))
+                        @if ($question->choice5)
                             <div class="form-check">
                                 <label class="form-check-label">
                                     <input type="radio" class="form-check-input" name="choice" value="choice5"
@@ -82,17 +82,15 @@
                 cache      : false,
                 success : function (data,status) {
                     if(status=='success'){
-                        var degree=data.degree;
-                        let questions=data.html;
-                        let parent2=$('.parent2');
+                        let degree    = data.degree,
+                            questions = data.html,
+                            parent2   = $('.parent2'),
+                            success   = $('#success');
 
                         if(questions == ''){
-                            let load=$('#load');
-                            load.show();
-
-                            load
-                            .text('you finished the exam and you get '+ degree +'/'+ (page-1));
-
+                            success.show();
+                            success.text('you finished the exam and you get '+ degree +'/'+ (page-1));
+                            
                             parent2.remove();
                             return
                         }

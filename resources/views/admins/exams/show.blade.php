@@ -29,7 +29,7 @@
                     <td>{{ $exam->level_id }}</td>
                     <td>{{ $exam->term }}</td>
                     <td>
-                        <a href="{{ url('admins/questions/show/' . $exam->id) }}" class='btn btn-primary'>
+                        <a href="{{ url('admins/questions/show/' . $exam->id) }}" class='btn btn-success'>
                             details
                         </a>
 
@@ -37,11 +37,11 @@
                             active
                         </a>
 
-                        <a href="{{ url('admins/exams/edit/' . $exam->id) }}" class='btn btn-primary'>
+                        <a href="{{ url('admins/exams/edit/' . $exam->id) }}" class='btn btn-info'>
                             edit
                         </a>
 
-                        <button type="button" class="btn btn-info edit_modal" 
+                        <button type="button" class="btn btn-secondary edit_modal" 
                         data-toggle="modal"  data-target="#edit_modal" id="{{$exam->id}}">
                             add questions
                         </button>

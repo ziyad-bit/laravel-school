@@ -8,7 +8,7 @@ class Exams extends Model
 {
     protected $table='exams';
     protected $fillable = [
-        'name', 'duration','active','level_id', 'term'
+        'name', 'duration','active','level_id', 'admin_id', 'term'
         ,'token','number_of_questions','date','subject_id','updated_at','created_at',
     ];
 
@@ -21,7 +21,7 @@ class Exams extends Model
     public function scopeUserSelection($q)
     {
         return $q->select('number_of_questions','name','id','token','duration'
-                        ,'created_at','updated_at');
+                        ,'created_at','updated_at','date', 'admin_id','subject_id');
     }
 
     public function scopeActive($q)
@@ -32,6 +32,16 @@ class Exams extends Model
     public function questions()
     {
         return $this->hasMany('App\Model\Questions','exam_id');
+    }
+
+    public function admins()
+    {
+        return $this->belongsTo('App\Model\Admins','admin_id');
+    }
+
+    public function subjects()
+    {
+        return $this->belongsTo('App\Model\Subjects','subject_id');
     }
 
     public function degrees()

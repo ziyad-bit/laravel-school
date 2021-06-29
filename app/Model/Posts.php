@@ -3,18 +3,34 @@
 namespace App\model;
 
 use Illuminate\Database\Eloquent\Model;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Posts extends Model
 {
+    use SearchableTrait;
+
+    protected $searchable=[
+        'columns'=>[
+            'posts.subject' => 10,
+            'posts.post'    => 9,
+        ],
+    ];
+
     protected $table='posts';
     protected $fillable = [
-        'post','photo','admin_id','level_id','fixed','updated_at','created_at','file','video'
+        'post','photo','admin_id','level_id','subject','fixed','updated_at','created_at','file','video'
     ];
 
     public function scopeSelection($q)
     {
         return $q->select('post','photo','created_at','id'
-                        ,'admin_id','level_id','file','video');
+                        ,'admin_id','level_id','file','video','subject');
+    }
+
+    public function scopeGroup($q)
+    {
+        return $q->groupBy(['id','post','photo'
+        ,'admin_id','level_id','subject','fixed','updated_at','created_at','file','video']);
     }
 
     public function comments()
