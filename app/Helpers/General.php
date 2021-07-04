@@ -1,7 +1,7 @@
 <?php
 
 function diff_date($date){
-    $date_diff=$date->diffInMinutes(date('y-m-d H:i:s'));
+    $date_diff=$date->diffInMinutes(date('Y-m-d H:i:s'));
     if($date_diff == 0){
         return 'few seconds ago';
 

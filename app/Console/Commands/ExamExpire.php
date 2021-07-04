@@ -38,10 +38,10 @@ class ExamExpire extends Command
      */
     public function handle()
     {
-        $exams=Exams::userSelection()->active()->get();
+        $exams=Exams::active()->get();
         if($exams){
             foreach ($exams as $exam) {
-                $date_active=$exam->updated_at;
+                $date_active=$exam->date;
                 $date_diff=$date_active->diffInMinutes(date('Y-m-d H:i:s'));
     
                 if ($date_diff >= $exam->duration) {

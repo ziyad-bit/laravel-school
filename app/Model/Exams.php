@@ -12,6 +12,8 @@ class Exams extends Model
         ,'token','number_of_questions','date','subject_id','updated_at','created_at',
     ];
 
+    protected $dates = ['date'];
+
     public function scopeSelection($q)
     {
         return $q->select('number_of_questions','name','id','level_id'

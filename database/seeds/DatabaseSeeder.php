@@ -11,13 +11,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name'     => 'ziyad',
-            'term'     => 1,
-            'level_id' => 2,
-            'email'    => 'ziyad199523@yahoo.com',
-            'password' => Hash::make('ziyad12'),
-        ]);
-
+        for ($i=1; $i <11 ; $i++) { 
+            DB::table('users')->insert([
+                'name'     => 'ziyad'.$i,
+                'term'     => 1,
+                'level_id' => 2,
+                'email'    => 'ziyad199523'.$i.'@yahoo.com',
+                'password' => Hash::make('ziyad12'),
+            ]);
+        }
     }
 }

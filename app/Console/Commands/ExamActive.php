@@ -38,7 +38,7 @@ class ExamActive extends Command
      */
     public function handle()
     {
-        $exams=Exams::selection()->where('active',0)->get();
+        $exams=Exams::where('active',0)->get();
         if($exams){
             foreach ($exams as $exam) {
                 if(date('Y-m-d H:i:s') >= $exam->date){

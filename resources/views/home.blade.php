@@ -53,7 +53,7 @@
     <img src="{{asset('images/home4.jpg')}}" alt="" class="land_img">
     
     <h3 class="text-center">Pinned  posts</h3>
-
+    
     @foreach ($fixed_comments_posts as $fixed_comments_post)
                 <!--     fixed posts     -->
 <section class="d-flex justify-content-center" >

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container">
         <i class="fas fa-align-left"></i>
-            <a class="navbar-brand" href="{{url('/home')}}">Laravel school</a>
+            <a class="navbar-brand" href="{{url('/')}}">Laravel school</a>
             
             <i class="fas fa-arrow-left"></i>
             
@@ -17,9 +17,9 @@
                 </button>
             </form>
             
-        <div class="navbar_left">
+        <div class="navbar_right">
             <i class="fas fa-bell">
-                <span id="notifs_count"></span>
+                <span id="notifs_count" class="rounded-circle" style="display: none"></span>
             </i>
 
             <i class="fas fa-search search_icon"></i>
@@ -45,8 +45,9 @@
                 </li>
             </ul>
         </div>
+        
         <div class="list-group notifications" style="display: none">
-            
+        
         </div>
     </div>
 </nav>
@@ -81,6 +82,7 @@
             //get notifications
             notify();
 
+            //update notifications
             $('.fa-bell').on('click', function () {
                 $('.notifications').show();
 
@@ -103,21 +105,24 @@
             
         })
 
+        //get notifications
         function notify(){
                 $.ajax({
                     type    : "get",
                     url     : "{{url('notifications/get')}}",
                     success : function (response , status) {
                         if (status == 'success') {
-                            let html         = response.html,
-                                notifs_count = response.notifs_count;
+                            let html                 = response.html,
+                                notifs_count         = response.notifs_count,
+                                notifs_count_element = $('#notifs_count')
 
                             $('.notifications').html(html);
 
-                            if (notifs_count == 0) {
-                                $('#notifs_count').text('');
+                            if (notifs_count != 0) {
+                                notifs_count_element.show();
+                                notifs_count_element.text(notifs_count);
                             }else{
-                                $('#notifs_count').text(notifs_count);
+                                notifs_count_element.hide();
                             }
                         }
                     },

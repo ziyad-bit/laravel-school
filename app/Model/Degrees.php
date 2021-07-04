@@ -13,7 +13,7 @@ class Degrees extends Model
 
     public function scopeSelection($q)
     {
-        return $q->select('degrees','grievance','page','finish','id','created_at');
+        return $q->select('degrees','grievance','page','finish','id','created_at','exam_id');
     }
 
     public function exams()

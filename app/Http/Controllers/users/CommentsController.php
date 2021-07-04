@@ -5,14 +5,17 @@ namespace App\Http\Controllers\users;
 use App\model\Comments;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\{Auth,Validator};
 use App\Traits\CommentRules;
-use Illuminate\Support\Facades\Validator;
 
 class CommentsController extends Controller
 {
     use CommentRules;
     
+    public function __construct()
+    {
+        $this->middleware(['auth','throttle:3,1']);
+    }
     #######################################      store       ############################
     public function store(Request $request)
     {

@@ -7,8 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\ExamRequest;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\{Auth,Redirect};
 use App\Model\{Degrees, Exams,Levels,Subjects};
 
 class ExamController extends Controller

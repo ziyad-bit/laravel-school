@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            @if(isset($exam_degrees))
+            @if($exam_degrees)
                 @foreach ($exam_degrees as $exam_degree)
                     <tr>
                         <td>{{$exam_degree->name}}</td>

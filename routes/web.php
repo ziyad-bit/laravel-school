@@ -13,15 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 
-###############################      exams        #####################################
+###############################         exams        #####################################
 Route::group(['prefix'=>'exams','namespace'=>'users'],function(){
     Route:: get   ('/get'                    ,'ExamController@index');
     Route:: any   ('/show/{token}'           ,'ExamController@show')->middleware('exam');

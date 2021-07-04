@@ -9,3 +9,15 @@ h3{
     width: 99.9%;
     left: 1.5%;
 }
+
+@media(max-width:992px){
+    .land_img{
+        left: -2.5%;
+    }
+}
+
+@media(max-width:768px){
+    .land_img{
+        left: 0%;
+    }
+}

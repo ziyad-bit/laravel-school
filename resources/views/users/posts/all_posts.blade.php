@@ -93,12 +93,11 @@
     @endforeach
 @endif
 
-
-@if($comments_posts)
-    @foreach ($comments_posts as $comments_post)
+@if($not_fixed_comments_posts)
+    @foreach ($not_fixed_comments_posts as $comments_post)
 
         <!--    not fixed posts     -->
-        <section class="d-flex justify-content-center">
+        <section class="d-flex justify-content-center" >
             <div class="card bg-light mb-3" style="max-width: 35rem;">
 
                 <!--      card top      -->
@@ -115,7 +114,8 @@
                         <a href="{{ url('posts/download/' . $comments_post->file) }}" class="btn btn-primary">
                             <i class="fas fa-arrow-down"></i>{{ strstr($comments_post->file, '-') }}
                         </a>
-                        <embed src="{{ asset('files/' . $comments_post->file) }}">
+                        <iframe src="{{ asset('files/' . $comments_post->file) }}" frameborder="0"></iframe>
+                        <!-- <embed src="{{ asset('files/' . $comments_post->file) }}"> -->
                     @endif
 
                     @if ($comments_post->photo)
@@ -178,11 +178,12 @@
                         <textarea name="comment" post_id="{{ $comments_post->id }}" id="{{ 'input' . $comments_post->id }}"
                             cols="20" rows="2" class="form-control input"></textarea>
                         <input type="hidden" name="post_id" value="{{ $comments_post->id }}">
-                        <small></small>
+                        <small style="color: red;display: none"></small>
                     </form>
                 </div>
             </div>
 
         </section>
     @endforeach
+    
 @endif

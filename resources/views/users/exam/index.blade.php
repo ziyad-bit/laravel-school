@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('header')
+<title>{{ env('APP_NAME', 'posts - laravelschool') }}</title>
+    <meta name="keywords" content="here you can see all questions for your exam in laravelschool" >
     <link rel="stylesheet" href="{{asset('css/users/exams/index.css')}}">
 @endsection
 
@@ -13,6 +15,7 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">subject</th>
+                <th scope="col">type</th>
                 <th scope="col">duration </th>
                 <th scope="col">date </th>
                 <th scope="col">control</th>
@@ -41,7 +44,9 @@
                 
                     <tr>
                         <th scope="row">{{$exam->id}}</th>
+                        <td>{{$exam->subjects->name}}</td>
                         <td>{{$exam->name}}</td>
+                        
                         <td>{{$exam->duration.' min'}}</td>
                         <td>
                             {{$exam->date}}

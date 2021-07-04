@@ -1,17 +1,26 @@
+:root{
+    --main_color : #0070ba;
+    --white_color: #fff;
+}
+
 .navbar {
-    background-color: #0070ba;
-    background-image: linear-gradient( 100deg, #0070ba, #1546a0);
+    background-color: var(--main_color);
+    background-image: linear-gradient( 100deg, var(--main_color), #1546a0);
     position        : fixed !important;
     z-index         : 10;
     width           : 100%;
 }
 
 .navbar-brand{
-    color: white !important;
+    color: var(--white_color)!important;
+}
+
+.navbar-brand:hover{
+    cursor: pointer;
 }
 
 body .sidebar_wrapper {
-    background-color: #fff;
+    background-color: var(--white_color);
 }
 
 .navbar-collapse {
@@ -22,13 +31,13 @@ body .sidebar_wrapper {
     margin-left: 20px;
 }
 
-.navbar_left {
+.navbar_right {
     position: relative;
     top     : 10px;
 }
 
 .nav-item #navbarDropdown {
-    color    : #fff;
+    color    : var(--white_color);
     font-size: large;
 }
 
@@ -63,17 +72,17 @@ body .sidebar_wrapper {
 .fa-search, .fa-bell {
     position : absolute;
     font-size: larger;
-    color    : aliceblue;
+    color    : var(--white_color);
 }
 
-.navbar_left .search_icon {
+.navbar_right .search_icon {
     right  : 115%;
     top    : 11px;
     display: none;
 }
 
 @media(max-width:576px) {
-    .navbar_left .search_icon {
+    .navbar_right .search_icon {
         display: inline-block;
     }
 }
@@ -110,15 +119,18 @@ body .sidebar_wrapper {
 }
 
 #notifs_count{
-    position: relative;
-    left    : 16px;
-    bottom  : 15px;
-    color   : red;
+    position        : relative;
+    left            : 11px;
+    bottom          : 30px;
+    color           : var(--white_color);
+    background-color: #F02849;
+    padding         : 5px;
+    font-size       : small;
 }
 
 .container .fa-arrow-left, .fa-align-left {
     font-size: larger;
-    color    : aliceblue;
+    color    : var(--white_color);
 }
 
 .fa-align-left {

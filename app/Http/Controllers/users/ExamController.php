@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\users;
 
 use App\Http\Controllers\Controller;
-use App\Model\Degrees;
-use App\Model\Exams;
-use App\Model\Questions;
+use App\Model\{Degrees,Questions,Exams};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,15 +16,20 @@ class ExamController extends Controller
     #####################################      index        #################################
     public function index()
     {
-        $inactive_exams = Exams::userSelection()->where('level_id', Auth::user()->level_id)
-                    ->where('term', Auth::user()->term)->where('active',0)->get();
+        $inactive_exams = Exams::userSelection()->with(['subjects'=>function($q){
+                $q->selection();
+            }])->where('level_id', Auth::user()->level_id)->
+                where('term', Auth::user()->term)->where('active',0)->get();
 
         $degree = Degrees::where('finish', 0)->where('user_id', Auth::user()->id)
             ->first();
 
         if ($degree) {
             $page = $degree->page;
-            $exam = Exams::where('id', $degree->exam_id)->active()->first();
+            $exam = Exams::userSelection()->with(['subjects'=>function($q){
+                $q->selection();
+            }])->where('id', $degree->exam_id)->active()->first();
+
         } else {
             $exam = null;
             $page = null;

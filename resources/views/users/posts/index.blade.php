@@ -53,13 +53,12 @@
         @include('users.posts.all_posts')
     </div>
 
-    <div id="load" style="display: none;color: #0070ba" class="d-flex justify-content-center">
+    <div id="load" style="display:none;color: #0070ba" >
         <div class="spinner-border text-primary" style="margin-right: 5px" role="status">
-            <span class="sr-only">Loading...</span>
+            
         </div>
         <span id="posts_end">loading ...</span>
     </div>
-    
 @endsection
 
 @section('script')
@@ -236,7 +235,12 @@
             }
         })
 
-
+        $(function(){
+            $('#load').show()
+            setTimeout(()=>{
+                $('#load').hide()
+            },8000)
+        })
         //infinite scroll
         function loadMore(page) {
             $.ajax({
@@ -247,6 +251,7 @@
                 },
                 beforeSend: function() {
                     $('#load').show()
+                    
                 }
 
             }).done(function(response) {

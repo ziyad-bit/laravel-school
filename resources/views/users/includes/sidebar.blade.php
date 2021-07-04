@@ -1,6 +1,6 @@
 <aside id="sidebar">
     <ul class="list-unstyled sidebar_links">
-        <a href="{{ url('/home') }}">
+        <a href="{{ url('/') }}">
             <div class="links home">
                 <li >
                     <i class="fas fa-home"></i>
@@ -61,7 +61,7 @@
                 $('.subjects').addClass('active');
             }
 
-            if(window.location.pathname == '/home'){
+            if(window.location.pathname == '/'){
                 $('.home').addClass('active');
             }
 

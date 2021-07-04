@@ -3,7 +3,7 @@
     top         : 75px;
     height      : 100%;
     width       : 19%;
-    border-right: 1px solid #0070ba;
+    border-right: 1px solid var(--main_color);
     
 }
 
@@ -86,7 +86,7 @@
 .sidebar_links li i {
     padding-right: 6px;
     font-size    : larger;
-    color        : #0070ba ;
+    color        : var(--main_color);
 }
 
 .fa-school{

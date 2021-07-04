@@ -5,11 +5,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-        @yield('header')
-    
-    <!-- Scripts -->
-    
 
+        @yield('header')
+    <link rel="shortcut icon" type="image/png" href="{{asset('images/logo.png')}}">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">

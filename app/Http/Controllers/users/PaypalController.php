@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\users;
 
 
-use App\Model\Degrees;
-use App\model\Paypals;
-use PayPal\Api\Payment;
-use PayPal\Api\PaymentExecution;
+use App\Model\{Degrees,Paypals};
+use PayPal\Api\{Payment,PaymentExecution};
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,13 +19,13 @@ class PaypalController extends Controller
     }
 
     ####################################      show      ###################################
-    public function show($id)
+    public function show(int $id)
     {
         return view('users.paypal.show',compact('id'));
     }
 
     ####################################      index      ###################################
-    public function index($id)
+    public function index(int $id)
     {
         $apiContext = new \PayPal\Rest\ApiContext(
             new \PayPal\Auth\OAuthTokenCredential(
@@ -71,7 +69,7 @@ class PaypalController extends Controller
     }
 
     ####################################       paypalReturn      ###################################
-    public function paypalReturn ($id) {
+    public function paypalReturn (int $id) {
         $apiContext = new \PayPal\Rest\ApiContext(
             new \PayPal\Auth\OAuthTokenCredential(
                 'AUenS_pY6i5vz25H58plAOK9lBAc1WzPL2g6K1BKZ3hy91cMB8z_XohctESGYxkCUOKHZnogFARMF7iw', // ClientID
