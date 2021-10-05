@@ -6,7 +6,7 @@
 <body>
     @auth
         @include('users.includes.navbar')
-
+        
         <div class="row" style="margin: 0">
             <div class="col-  col-md-3 col-lg-2 " style="padding-left: 0">
                 <div class=" sidebar_wrapper">

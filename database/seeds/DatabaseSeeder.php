@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,7 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=1; $i <11 ; $i++) { 
+        for ($i=400; $i <3000 ; $i++) { 
             DB::table('users')->insert([
                 'name'     => 'ziyad'.$i,
                 'term'     => 1,

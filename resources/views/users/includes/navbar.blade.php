@@ -61,7 +61,8 @@
                 navbar_brand = $('.navbar-brand'),
                 fa_align     = $('.fa-align-left'),
                 fa_search    = $('.fa-search'),
-                arrow        = $('.fa-arrow-left');
+                arrow        = $('.fa-arrow-left'),
+                
 
             $('body').on('click','.fa-search', function () {
                 form_inline.removeClass('form-search');
@@ -69,6 +70,7 @@
                 navbar_brand.hide();
                 arrow.show();
                 fa_align.hide();
+                
             });
 
             arrow.on('click', function () {
@@ -77,6 +79,7 @@
                 navbar_brand.show();
                 $(this).hide();
                 fa_align.show();
+                
             });
 
             //get notifications

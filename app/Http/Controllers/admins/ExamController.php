@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\ExamRequest;
 use App\Http\Controllers\Controller;
+use App\Jobs\Degrees as JobsDegrees;
 use Illuminate\Support\Facades\{Auth,Redirect};
 use App\Model\{Degrees, Exams,Levels,Subjects};
 
@@ -82,14 +83,9 @@ class ExamController extends Controller
             return redirect()->back()->with(['error'=>'not found']);
         }
 
-        $users=User::where('level_id',$exam->level_id)->get();
-        foreach ($users as  $user) {
-            Degrees::create([
-                'exam_id'    => $exam->id,
-                'user_id'    => $user->id,
-                'subject_id' => $exam->subject_id,
-            ]);
-        }
+        User::where('level_id',$exam->level_id)->chunk(50,function($data) use($exam){
+            dispatch(new JobsDegrees($data,$exam));
+        });
 
         $exam->update([
             'active'=>1
